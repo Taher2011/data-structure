@@ -154,21 +154,6 @@ public class CustomArrayList<T> {
 	}
 
 	public static void main(String[] args) {
-		CustomArrayList<Integer> al = new CustomArrayList<>();
-		al.add(1);
-		al.add(2);
-		al.add(3);
-		al.add(4);
-		System.out.println(al);
-		al.set(0, 0);
-		System.out.println(al);
-		System.out.println(al.remove(0));
-		System.out.println(al);
-		System.out.println(al.remove(new Integer(2)));
-		System.out.println(al);
-		System.out.println(al.contains(3));
-		al.add(1, 35);
-		System.out.println(al);
 	}
 
 }
