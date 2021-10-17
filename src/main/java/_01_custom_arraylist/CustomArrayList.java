@@ -1,6 +1,6 @@
 package _01_custom_arraylist;
 
-public class CustomArrayList {
+public class CustomArrayList<T> {
 
 	private Object[] data;
 	private int index;
@@ -10,26 +10,26 @@ public class CustomArrayList {
 		data = new Object[initialCapacity];
 	}
 
-	public boolean add(Object obj) {
+	public boolean add(T obj) {
 		checkArraySize();
 		data[index] = obj;
 		index++;
 		return true;
 	}
 
-	public Object get(int index) {
+	public T get(int index) {
 		rangeCheck(index);
-		return data[index];
+		return (T) data[index];
 	}
 
-	public Object set(int index, Object obj) {
+	public T set(int index, T obj) {
 		rangeCheck(index);
-		String oldValue = (String) data[index];
+		T oldValue = (T) data[index];
 		data[index] = obj;
 		return oldValue;
 	}
 
-	public boolean remove(Object obj) {
+	public boolean remove(T obj) {
 		for (int i = 0; i < size(); i++) {
 			if (data[i].equals(obj)) {
 				for (int j = i; j < size(); j++) {
@@ -42,11 +42,11 @@ public class CustomArrayList {
 		return false;
 	}
 
-	public Object remove(int index) {
+	public T remove(int index) {
 		rangeCheck(index);
 		for (int i = 0; i < size(); i++) {
 			if (i == index) {
-				String removedValue = (String) data[index];
+				T removedValue = (T) data[index];
 				for (int j = i; j < size(); j++) {
 					data[j] = data[j + 1];
 				}
@@ -57,7 +57,7 @@ public class CustomArrayList {
 		return null;
 	}
 
-	public void add(int index, Object obj) {
+	public void add(int index, T obj) {
 		rangeCheck(index);
 		for (int i = 0; i < size(); i++) {
 			if (i == index) {
@@ -76,7 +76,7 @@ public class CustomArrayList {
 		return size() == 0;
 	}
 
-	public boolean contains(Object obj) {
+	public boolean contains(T obj) {
 		for (int i = 0; i < size(); i++) {
 			if (data[i].equals(obj)) {
 				return true;
@@ -89,7 +89,7 @@ public class CustomArrayList {
 		return index;
 	}
 
-	public int indexOf(Object obj) {
+	public int indexOf(T obj) {
 		for (int i = 0; i < size(); i++) {
 			if (data[i].equals(obj)) {
 				return i;
@@ -98,7 +98,7 @@ public class CustomArrayList {
 		return -1;
 	}
 
-	public int lastIndexOf(Object obj) {
+	public int lastIndexOf(T obj) {
 		for (int i = size() - 1; i >= 0; i--) {
 			if (data[i].equals(obj)) {
 				return i;
@@ -154,6 +154,21 @@ public class CustomArrayList {
 	}
 
 	public static void main(String[] args) {
+		CustomArrayList<Integer> al = new CustomArrayList<>();
+		al.add(1);
+		al.add(2);
+		al.add(3);
+		al.add(4);
+		System.out.println(al);
+		al.set(0, 0);
+		System.out.println(al);
+		System.out.println(al.remove(0));
+		System.out.println(al);
+		System.out.println(al.remove(new Integer(2)));
+		System.out.println(al);
+		System.out.println(al.contains(3));
+		al.add(1, 35);
+		System.out.println(al);
 	}
 
 }
