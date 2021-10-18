@@ -1,40 +1,38 @@
-package _03_custom_stack;
+package _04_custom_queue;
 
-import java.util.EmptyStackException;
-
-public class CustomStack<T> {
+public class CustomQueue<T> {
 
 	private Node<T> head;
+	private Node<T> tail;
 	private int index;
 
 	static class Node<T> {
-
 		private T data;
 		private Node<T> next;
 
-		public Node(T t) {
+		public Node(T data) {
 			super();
-			this.data = t;
+			this.data = data;
 		}
 
 	}
 
-	public T push(T t) {
+	public boolean offer(T t) {
 		Node<T> newNode = new Node<>(t);
 		if (head == null) {
-			head = newNode;
+			head = tail = newNode;
 			index++;
-			return t;
+			return true;
 		}
-		newNode.next = head;
-		head = newNode;
+		tail.next = newNode;
+		tail = newNode;
 		index++;
-		return t;
+		return true;
 	}
 
-	public T pop() {
+	public T poll() {
 		if (head == null) {
-			throw new EmptyStackException();
+			return null;
 		}
 		T removedData = head.data;
 		head = head.next;
@@ -44,7 +42,7 @@ public class CustomStack<T> {
 
 	public T peek() {
 		if (head == null) {
-			throw new EmptyStackException();
+			return null;
 		}
 		T dataAtHead = head.data;
 		return dataAtHead;
