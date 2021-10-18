@@ -1,4 +1,4 @@
-package _05_custom_hasttable;
+package _05_custom_hashtable;
 
 public class CustomHashTable<K, V> {
 
