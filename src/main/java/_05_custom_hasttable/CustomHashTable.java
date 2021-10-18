@@ -46,7 +46,16 @@ public class CustomHashTable<K, V> {
 				}
 				hashEntry = hashEntry.next;
 			}
-			if (hashEntry.key.equals(key)) {
+			if (hashEntry.key != null && hashEntry.key.equals(key)) {
+				V oldValue = hashEntry.value;
+				hashEntry.value = value;
+				return oldValue;
+			}
+			if (hashEntry.key == null) {
+				if (hashEntry.key != key) {
+					hashEntry.next = entry;
+					return null;
+				}
 				V oldValue = hashEntry.value;
 				hashEntry.value = value;
 				return oldValue;
@@ -110,6 +119,9 @@ public class CustomHashTable<K, V> {
 	private int getIndex(K key) {
 		checkMapSize();
 		// Get hashCode of key
+		if (key == null) {
+			return 0;
+		}
 		int hashCode = key.hashCode();
 		// Convert to index
 		int index = hashCode % DEFAULT_INITIAL_CAPACITY;
@@ -141,31 +153,6 @@ public class CustomHashTable<K, V> {
 
 	public static void main(String[] args) {
 		CustomHashTable<String, String> cht = new CustomHashTable<>();
-		cht.put("A", "123");
-		cht.put("B", "123");
-		cht.put("C", "123");
-		cht.put("D", "123");
-		cht.put("E", "123");
-		cht.put("F", "123");
-		cht.put("G", "123");
-		cht.put("H", "123");
-		cht.put("I", "123");
-		cht.put("J", "123");
-		cht.put("K", "123");
-		cht.put("L", "123");
-		cht.put("M", "123");
-		cht.put("N", "123");
-		cht.put("O", "123");
-		cht.put("P", "123");
-		cht.put("Q", "123");
-		cht.put("R", "123");
-		cht.put("S", "123");
-		cht.put("T", "123");
-		cht.put("U", "123");
-		cht.put("V", "123");
-		cht.put("V", "456");
-		System.out.println("size is " + cht.size);
-		System.out.println(cht);
 	}
 
 }
